@@ -1,10 +1,5 @@
 import { BindParameters } from "oracledb";
 
-// export interface IexecuteQuery {
-//     sql: string;
-//     binds: BindParameters;
-// }
-
 export interface IoracleQueryOptions {
     sql: string;
     binds: BindParameters;
@@ -21,7 +16,7 @@ export interface IgenericDatabaseQueryOptions {
 }
 
 export interface IgenericDatabaseBinds {
-    dir: 'bind_in' | 'bind_out';
-    type: 'string' | 'number';
-    val: string | number;
+    dir?: 'bind_in' | 'bind_out';
+    type?: 'string' | 'number';
+    val?: string | number;
 }
