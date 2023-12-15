@@ -1,4 +1,4 @@
-import { Pool } from "pg";
+import { Pool, QueryResult } from "pg";
 
 import { postgresBinder } from './binders'
 
@@ -25,7 +25,7 @@ const pool = new Pool({
 });
 console.info('Postgres Pool created.');
 
-export const executeQueryPostgres = async (prop: IgenericDatabaseQueryOptions) => {
+export const executeQueryPostgres = async (prop: IgenericDatabaseQueryOptions): Promise<QueryResult> => {
     const client = await pool.connect();
     try {
         const { sql, binds } = postgresBinder(prop.sql, prop.binds);

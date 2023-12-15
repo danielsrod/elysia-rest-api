@@ -7,6 +7,7 @@ import oracledb, {
     BIND_OUT,
     STRING,
     NUMBER,
+    Result,
 } from 'oracledb';
 
 import {
@@ -91,7 +92,7 @@ const oracleBinder = (_sql: string, _binds: object): IoracleQueryOptions => {
     };
 }
 
-export const executeQueryOracle = async (prop: IgenericDatabaseQueryOptions) => {
+export const executeQueryOracle = async (prop: IgenericDatabaseQueryOptions): Promise<Result<unknown>> => {
     const pool = await oracledb.getConnection();
     try {
         const { sql, binds } = oracleBinder(prop.sql, prop.binds);
