@@ -26,3 +26,10 @@ export interface IdatabaseInterfaceMap {
     oracle: OracleResult<unknown>;
     postgres: PostgresResult;
 };
+
+export interface IdatabaseQueryResults {
+    rows: object[];
+    fields: string[] | undefined;
+    rowCount: number | undefined | null;
+    outBinds: object[];
+}

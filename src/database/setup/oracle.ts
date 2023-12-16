@@ -13,7 +13,10 @@ import oracledb, {
 import {
     IoracleQueryOptions,
     IgenericDatabaseQueryOptions,
+    IdatabaseQueryResults,
 } from './interfaces';
+
+import { TanyObject } from './types';
 
 const {
     ORACLE_USER,
@@ -92,12 +95,46 @@ const oracleBinder = (_sql: string, _binds: object): IoracleQueryOptions => {
     };
 }
 
-export const executeQueryOracle = async (prop: IgenericDatabaseQueryOptions): Promise<Result<unknown>> => {
+const rowsWithLowercaseKeys = (rows: any) => {
+    if (rows.length === 0) return [];
+    return rows.map((row: any) => {
+        const newRow: { [key: string]: any } = {};
+        for (const [key, value] of Object.entries(row)) {
+            newRow[key.toLowerCase()] = value;
+        }
+        return newRow;
+    });
+}
+
+const transformOutBindOracle = (outBind: TanyObject) => {
+
+    const keys = Object.keys(outBind);
+    const values = Object.values(outBind);
+
+    if (values.length === 0) return [];
+
+    const transformedData = values[0].map((_: any, index: number) => {
+        const transformedObject: TanyObject = {};
+        keys.forEach((key) => {
+            transformedObject[key] = values[keys.indexOf(key)][index];
+        });
+        return transformedObject;
+    });
+
+    return transformedData;
+}
+
+export const executeQueryOracle = async (prop: IgenericDatabaseQueryOptions): Promise<IdatabaseQueryResults> => {
     const pool = await oracledb.getConnection();
     try {
         const { sql, binds } = oracleBinder(prop.sql, prop.binds);
         const result = await pool.execute(sql, binds, executeOptions);
-        return result;
+        return {
+            rows: rowsWithLowercaseKeys(result.rows),
+            fields: result.metaData?.map(({name}) => name.toLowerCase()),
+            rowCount: result.rowsAffected ? result.rowsAffected : result.rows?.length,
+            outBinds: transformOutBindOracle(result.outBinds ? result.outBinds : [])
+        };
     } catch (error) {
         console.error(`Error in executeQuery: ${error}`)
         throw new Error(`Error in executeQuery: ${error}`)

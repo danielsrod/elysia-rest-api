@@ -1,5 +1,5 @@
 import { Elysia } from 'elysia';
-import { helloWorldRouter } from './helloWorld.router';
+import { helloWorldRouter } from '../modules/HelloWorld/routes/index';
 
 export const router = new Elysia();
 

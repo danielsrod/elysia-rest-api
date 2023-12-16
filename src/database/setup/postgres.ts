@@ -2,7 +2,10 @@ import { Pool, QueryResult } from "pg";
 
 import { postgresBinder } from './binders'
 
-import { IgenericDatabaseQueryOptions } from "./interfaces";
+import { 
+    IgenericDatabaseQueryOptions,
+    IdatabaseQueryResults
+} from "./interfaces";
 
 const {
     POSTGRES_HOST,
@@ -25,12 +28,17 @@ const pool = new Pool({
 });
 console.info('Postgres Pool created.');
 
-export const executeQueryPostgres = async (prop: IgenericDatabaseQueryOptions): Promise<QueryResult> => {
+export const executeQueryPostgres = async (prop: IgenericDatabaseQueryOptions): Promise<IdatabaseQueryResults> => {
     const client = await pool.connect();
     try {
         const { sql, binds } = postgresBinder(prop.sql, prop.binds);
         const result = await pool.query(sql, binds);
-        return result;
+        return {
+            rows: result.rows,
+            fields: result.fields.map(({name}) => name),
+            rowCount: result.rowCount,
+            outBinds: result.rows
+        };
     } catch (error) {
         console.error(`Error in executeQuery: ${error}`)
         throw new Error(`Error in executeQuery: ${error}`)
