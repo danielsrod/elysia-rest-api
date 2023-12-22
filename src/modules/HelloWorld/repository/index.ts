@@ -8,6 +8,7 @@ export const helloWorld = async () => {
         `;
         const binds: IgenericDatabaseBinds = {};
         const result = await handleExecuteQuery({ sql, binds });
+        return result;
     } catch (error) {
         console.error(error)
     }
