@@ -1,17 +1,5 @@
-import { Result as OracleResult } from "oracledb";
-import { QueryResult as PostgresResult } from "pg";
+import { Result, BindParameters } from "oracledb";
 
-type InterfaceMap = {
-    oracle: OracleResult<unknown>,
-    postgres: PostgresResult
-};
+export type OracleResult = Result<unknown>;
 
-type AllProperties<T> = {
-    [K in keyof T]: T[K]
-}
-
-export type TanyObject = { [key: string]: any };
-
-export const getInterfaceByName = <T extends keyof InterfaceMap>(_: T): AllProperties<InterfaceMap[T]> => {
-    return {} as AllProperties<InterfaceMap[T]>;
-}
+export type IOracleBinds = BindParameters;

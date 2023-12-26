@@ -1,12 +1,12 @@
 import { handleExecuteQuery } from "../../database/setup/handler";
-import { IgenericDatabaseBinds } from "../../database/setup/interfaces";
+import { IOracleBinds } from "../../database/setup/types";
 
 export const helloWorld = async () => {
     try {
         const sql = `
             select 'hello world' as ds_text from dual
         `;
-        const binds: IgenericDatabaseBinds = {};
+        const binds: IOracleBinds = {};
         const result = await handleExecuteQuery({ sql, binds });
         return result;
     } catch (error) {

@@ -8,8 +8,8 @@ const { PORT } = process.env;
 export const app = new Elysia();
 
 app.use(swagger());
-app.use(cors());
 app.use(logger());
+app.use(cors());
 app.use(router);
 
 app.listen(Number(PORT) | 3000);
