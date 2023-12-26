@@ -1,6 +1,6 @@
-import { BindParameters } from "oracledb";
+import { BindParameters } from 'oracledb';
 
 export interface IOracleQueryOptions {
-    sql: string;
-    binds: BindParameters;
+	sql: string;
+	binds: BindParameters;
 }

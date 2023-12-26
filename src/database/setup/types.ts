@@ -1,4 +1,4 @@
-import { Result, BindParameters } from "oracledb";
+import { BindParameters, Result } from 'oracledb';
 
 export type OracleResult = Result<unknown>;
 

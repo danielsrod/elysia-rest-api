@@ -1,8 +1,8 @@
-import { Elysia } from "elysia";
-import { cors } from "@elysiajs/cors";
-import { router } from "./routes/router";
-import { swagger } from "@elysiajs/swagger";
-import { logger } from "@bogeychan/elysia-logger";
+import { logger } from '@bogeychan/elysia-logger';
+import { cors } from '@elysiajs/cors';
+import { swagger } from '@elysiajs/swagger';
+import { Elysia } from 'elysia';
+import { router } from './routes/router';
 
 const { PORT } = process.env;
 export const app = new Elysia();

@@ -1,7 +1,7 @@
-import { executeQueryOracle } from "./index";
-import { OracleResult } from './types'
-import { IOracleQueryOptions } from "./interfaces";
+import { executeQueryOracle } from './index';
+import { IOracleQueryOptions } from './interfaces';
+import { OracleResult } from './types';
 
 export const handleExecuteQuery = async (prop: IOracleQueryOptions): Promise<OracleResult> => {
-    return await executeQueryOracle(prop);
-}
+	return await executeQueryOracle(prop);
+};
