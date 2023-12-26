@@ -1,5 +1,5 @@
-import { handleExecuteQuery } from "../../../database/setup/handler";
-import { IgenericDatabaseBinds } from "../../../database/setup/interfaces";
+import { handleExecuteQuery } from "../../database/setup/handler";
+import { IgenericDatabaseBinds } from "../../database/setup/interfaces";
 
 export const helloWorld = async () => {
     try {

@@ -1,0 +1,9 @@
+Argument of type 
+'{ body: unknown; query: Record<string, string | null>; params: { id: string; }; headers: Record<string, string | null>; cookie: Record<string, Cookie<any>>; set: { ...; }; path: string; request: Request; store: {}; }' is not assignable to parameter of type 'ThelloWorldConfig'.
+
+
+Type '{ body: unknown; query: Record<string, string | null>; params: { id: string; }; headers: Record<string, string | null>; cookie: Record<string, Cookie<any>>; set: { ...; }; path: string; request: Request; store: {}; }' is not assignable to type '{ body: unknown; query: Record<string, string | null>; params: never; headers: Record<string, string | null>; cookie: Record<string, Cookie<any>>; set: { ...; }; path: string; request: Request; store: {}; }'.
+    
+    
+    
+Types of property 'params' are incompatible. Type '{ id: string; }' is not assignable to type 'never'.ts(2345)
