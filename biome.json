@@ -5,6 +5,7 @@
 	},
 	"linter": {
 		"enabled": true,
+		"ignore": ["src/routes/*.ts"],
 		"rules": {
 			"recommended": true
 		}

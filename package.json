@@ -1,23 +1,24 @@
 {
-  "name": "elysia",
-  "version": "1.0.50",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/server.ts"
-  },
-  "dependencies": {
-    "@bogeychan/elysia-logger": "^0.0.13",
-    "@elysiajs/cors": "^0.7.2",
-    "@elysiajs/swagger": "^0.7.4",
-    "elysia": "latest",
-    "oracledb": "^6.2.0",
-    "pg": "^8.11.3"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.4.1",
-    "@types/oracledb": "^6.0.4",
-    "@types/pg": "^8.10.9",
-    "bun-types": "latest"
-  },
-  "module": "src/index.js"
+	"name": "elysia",
+	"version": "1.0.50",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "bun run --watch src/server.ts",
+		"check": "bunx @biomejs/biome check --apply src/"
+	},
+	"dependencies": {
+		"@bogeychan/elysia-logger": "^0.0.13",
+		"@elysiajs/cors": "^0.7.2",
+		"@elysiajs/swagger": "^0.7.4",
+		"elysia": "latest",
+		"oracledb": "^6.2.0",
+		"pg": "^8.11.3"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.4.1",
+		"@types/oracledb": "^6.0.4",
+		"@types/pg": "^8.10.9",
+		"bun-types": "latest"
+	},
+	"module": "src/index.js"
 }
