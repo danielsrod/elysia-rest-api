@@ -1,6 +1,4 @@
-import { BindParameters } from 'oracledb';
-
-export interface IOracleQueryOptions {
+export interface IPostgresQueryOptions {
 	sql: string;
-	binds: BindParameters;
+	binds: Array<any>;
 }

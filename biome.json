@@ -5,7 +5,7 @@
 	},
 	"linter": {
 		"enabled": true,
-		"ignore": ["src/routes/*.ts"],
+		"ignore": ["src/routes/router.ts", "src/database/setup/interfaces.ts", "src/database/setup/types.ts"],
 		"rules": {
 			"recommended": true
 		}

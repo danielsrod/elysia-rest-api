@@ -1,5 +1,4 @@
-import { BindParameters, Result } from 'oracledb';
+import { QueryResult } from 'pg';
 
-export type OracleResult = Result<unknown>;
-
-export type IOracleBinds = BindParameters;
+export type TPostgresResult = QueryResult;
+export type TPostgresBinds = Array<any>;

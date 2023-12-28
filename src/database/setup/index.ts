@@ -1,36 +1,34 @@
-import oracledb, { ExecuteOptions, OUT_FORMAT_OBJECT, PoolAttributes, createPool } from 'oracledb';
+import { Pool, QueryConfig } from 'pg';
+import { IPostgresQueryOptions } from './interfaces';
+import { TPostgresResult } from './types';
 
-import { IOracleQueryOptions } from './interfaces';
-import { OracleResult } from './types';
+const { POSTGRES_HOST, POSTGRES_PORT, POSTGRES_USERNAME, POSTGRES_PASSWORD, POSTGRES_DATABASE } = process.env;
 
-const { ORACLE_USER, ORACLE_PASSWORD, ORACLE_CONNECTIONSTRING } = process.env;
+console.info('Creating a Postgres Pool ...');
+const pool = new Pool({
+	host: POSTGRES_HOST,
+	port: Number(POSTGRES_PORT),
+	user: POSTGRES_USERNAME,
+	password: POSTGRES_PASSWORD,
+	database: POSTGRES_DATABASE,
+	max: 100,
+	idleTimeoutMillis: 30000,
+	connectionTimeoutMillis: 2000
+});
+console.info('Postgres Pool created.');
 
-const options: PoolAttributes = {
-	user: ORACLE_USER,
-	password: ORACLE_PASSWORD,
-	connectionString: ORACLE_CONNECTIONSTRING
-};
+await pool.query('');
 
-const executeOptions: ExecuteOptions = {
-	autoCommit: true,
-	outFormat: OUT_FORMAT_OBJECT
-};
-
-console.info('Creating a Oracle Pool ...');
-await createPool(options);
-console.info('Oracle Pool created.');
-
-export const executeQueryOracle = async (prop: IOracleQueryOptions): Promise<OracleResult> => {
-	const pool = await oracledb.getConnection();
+export const executeQueryPostgres = async (prop: IPostgresQueryOptions): Promise<TPostgresResult> => {
+	const client = await pool.connect();
 	try {
 		const { sql, binds } = prop;
-		const result = await pool.execute(sql, binds, executeOptions);
+		const result = await pool.query(sql, binds);
 		return result;
 	} catch (error) {
 		console.error(`Error in executeQuery: ${error}`);
 		throw new Error(`Error in executeQuery: ${error}`);
 	} finally {
-		// console.info('fechando conexao')
-		await pool.close();
+		client.release();
 	}
 };

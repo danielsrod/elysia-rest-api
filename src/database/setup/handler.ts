@@ -1,7 +1,7 @@
-import { executeQueryOracle } from './index';
-import { IOracleQueryOptions } from './interfaces';
-import { OracleResult } from './types';
+import { executeQueryPostgres } from './index';
+import { IPostgresQueryOptions } from './interfaces';
+import { TPostgresResult } from './types';
 
-export const handleExecuteQuery = async (prop: IOracleQueryOptions): Promise<OracleResult> => {
-	return await executeQueryOracle(prop);
+export const handleExecuteQuery = async (prop: IPostgresQueryOptions): Promise<TPostgresResult> => {
+	return await executeQueryPostgres(prop);
 };
