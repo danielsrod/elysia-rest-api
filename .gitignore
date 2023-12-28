@@ -42,3 +42,6 @@ package-lock.json
 **/*.bun
 .env
 teste.ts
+teste.http
+teste.rest
+bun.lockb
