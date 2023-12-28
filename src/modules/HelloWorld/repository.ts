@@ -4,7 +4,7 @@ import { TPostgresBinds } from '../../database/setup/types';
 export const helloWorld = async () => {
 	try {
 		const sql = `
-            select 'hello world' as ds_text from dual
+            select 'hello world' as ds_text
         `;
 		const binds: TPostgresBinds = [];
 		const result = await handleExecuteQuery({ sql, binds });
