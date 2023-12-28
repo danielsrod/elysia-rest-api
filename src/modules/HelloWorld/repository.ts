@@ -9,7 +9,8 @@ export const helloWorld = async () => {
 		const binds: IOracleBinds = {};
 		const result = await handleExecuteQuery({ sql, binds });
 		return result;
-	} catch (error) {
+		// biome-ignore lint: error is scuffed
+	} catch (error: any) {
 		console.error(error);
 		throw new Error(error);
 	}
