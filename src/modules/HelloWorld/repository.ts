@@ -11,5 +11,6 @@ export const helloWorld = async () => {
 		return result;
 	} catch (error) {
 		console.error(error);
+		throw new Error(error);
 	}
 };
