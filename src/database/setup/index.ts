@@ -1,4 +1,4 @@
-import { Pool, QueryConfig } from 'pg';
+import { Pool } from 'pg';
 import { IPostgresQueryOptions } from './interfaces';
 import { TPostgresResult } from './types';
 
