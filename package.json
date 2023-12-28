@@ -16,7 +16,6 @@
   "devDependencies": {
     "@biomejs/biome": "1.4.1",
     "@types/oracledb": "^6.0.4",
-    "@types/pg": "^8.10.9",
     "bun-types": "latest"
   },
   "module": "src/index.js"
