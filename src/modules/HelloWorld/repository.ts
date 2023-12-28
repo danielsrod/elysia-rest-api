@@ -1,3 +1,4 @@
+import { BIND_IN, NUMBER, STRING, BIND_OUT } from 'oracledb';
 import { handleExecuteQuery } from '../../database/setup/handler';
 import { IOracleBinds } from '../../database/setup/types';
 
